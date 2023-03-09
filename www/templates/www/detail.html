@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<form action="{% url 'www:vote' house.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ house.name_house }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{{% endif %}}
+        {% for cities in house.name_cities.all %}
+            <input type="radio" name="cities" id="cities {{ fofloop.counter }}" value="{{ cities.id }}">
+            <label for="cities {{ fofloop.counter }}">{{ cities.cities_id }}</label><br>
+        {{% endfor %}}
+    </fieldset>
+    <input type="submit" value="Vote">
+</form>
+
+<h1>{{ house.name_house }}</h1>
+<ul>
+{% for cities in house.cities_set.all %}
+    <li>{{ cities.name_cities }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+</head>
+<body>
+{% if latest_house_list %}
+    <ul>
+    {% for house in latest_house_list %}
+        <li><a href="{% url 'www:detail' house.id %}">{{ house.name_house }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No house are available.</p>
+{% endif %}
+</body>
+</html>
